@@ -1,0 +1,34 @@
+<div class="container text-center p-5">
+
+  <div class="spinner-border" role="status" *ngIf="estaCarregando">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  <div *ngIf="erroNoCarregamento">
+    <h2>Deu erro :(</h2>
+    <button (click)="carregarContatos()"> Tentar novamente </button>
+  </div>
+
+  <button class="btn btn-primary m-1" (click)="novoContato()"> Novo contato </button>
+
+  <div *ngIf="!estaCarregando && !erroNoCarregamento">
+
+    <table class="table table-hover">
+      <tr>
+        <th> Nome </th>
+        <th> Ações </th>
+      </tr>
+    
+      <tr *ngFor="let contato of contatos">
+        <td> {{ contato.nome }} </td>
+        <td> 
+          <button class="btn btn-primary m-1" (click)="irParaDetalhes(contato.id)"> Ver detalhes </button>
+          <button class="btn btn-primary m-1" (click)="irParaEditar(contato.id)"> Editar </button>
+          <button class="btn btn-danger m-1" (click)="deletarContato(contato.id)"> Deletar </button>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>
